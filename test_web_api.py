@@ -87,7 +87,7 @@ def test_bill_classify():
 
 def test_bill_classify_batch(input_fp):
     df = pd.read_excel(input_fp, sheet_name=0)
-    df = df.iloc[:50]
+    df.fillna("", inplace=True)
     df["predicted_bill_type"] = df.apply(get_bill_classify_result_batch, axis=1)
     df["predicted_bill_type"] = df.predicted_bill_type.apply(lambda x: x["bill_type"])
     output_dir = "./output"
@@ -119,7 +119,7 @@ def test_bill_similarity_search_batch(input_fp, k=5):
 if __name__ == "__main__":
     # 【清单分类】单条测试
     # 测试方法：在下面函数的定义中修改相关变量
-    test_bill_classify()
+    # test_bill_classify()
 
     # 【清单分类】批量测试
     # 测试方法：在下面的文件中添加需要测试的样例
@@ -128,9 +128,9 @@ if __name__ == "__main__":
 
     # 【清单相似搜索】单条测试
     # 测试方法：在下面函数的定义中修改相关变量
-    test_bill_similarity_search()
+    # test_bill_similarity_search()
 
     # 【清单相似搜索】批量测试
     # 测试方法：在下面的文件中添加需要测试的样例
-    data_filepath = "data/bill-similarity-search-test-samples.xlsx"
-    test_bill_similarity_search_batch(data_filepath, k=5)
+    # data_filepath = "data/bill-similarity-search-test-samples.xlsx"
+    # test_bill_similarity_search_batch(data_filepath, k=5)
